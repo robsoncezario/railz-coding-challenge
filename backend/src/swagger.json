@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Railz coding challenge API",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "robsoncezariosilva@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Test API"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/geocoding/search": {
+      "post": {
+        "summary": "Reverse geocoding",
+        "description": "This route would be responsible to get an address, time zone and elevation from a specific form",
+        "tags": ["Geocoding"],
+        "responses": {
+          "400": {
+            "description": "All parameters must be filled"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "$ref": "#/components/schemas/AddressInput"
+                }
+              }
+            },
+
+            "examples": {
+              "address": {
+                "value": {
+                  "street": "Rua 916",
+                  "city": "Balneario Camboriu",
+                  "state": "Santa Catarina",
+                  "country": "Brazil",
+                  "postalCode": "88330-570"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+
+          "latitude": {
+            "type": "number"
+          },
+
+          "longitude": {
+            "type": "number"
+          },
+
+          "elevation": {
+            "type": "number"
+          },
+
+          "timeZoneId": {
+            "type": "string"
+          }
+        }
+      },
+
+      "AddressInput": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+
+          "city": {
+            "type": "string"
+          },
+
+          "state": {
+            "type": "string"
+          },
+
+          "country": {
+            "type": "string"
+          },
+
+          "postalCode": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
