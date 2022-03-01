@@ -40,8 +40,6 @@ GOOGLE_MAP_API_KEY
 
 ## Backend
 
-## Tools
-
 ```
 Express
 Jest
